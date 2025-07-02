@@ -1,0 +1,43 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 50px);
+  grid-template-rows: repeat(9, 50px);
+  gap: 0;
+  width: 450px;
+  margin: 0 auto;
+  border: 3px solid #333;
+}
+
+.cell {
+  border: 1px solid #999;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cell:focus {
+  outline: none;
+  background-color: #eef;
+}
+
+.cell[data-block="bold-top"] {
+  border-top: 3px solid #333;
+}
+.cell[data-block="bold-left"] {
+  border-left: 3px solid #333;
+}
+.cell[data-block="bold-right"] {
+  border-right: 3px solid #333;
+}
+.cell[data-block="bold-bottom"] {
+  border-bottom: 3px solid #333;
+}
