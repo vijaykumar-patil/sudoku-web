@@ -1,13 +1,13 @@
 const board = document.getElementById('sudoku-board');
+const numberPad = document.getElementById('number-pad');
+let selectedCell = null;
 
-// Predefined puzzles (use more if you want)
 const puzzles = [
   "530070000600195000098000060800060003400803001700020006060000280000419005000080079",
   "000260701680070090190004500820100040004602900050003028009300074040050036703018000",
   "300200000000107000706030500070009080900020004010800050009040301000702000000008006"
 ];
 
-// Choose one randomly
 const puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
 
 for (let row = 0; row < 9; row++) {
@@ -17,7 +17,7 @@ for (let row = 0; row < 9; row++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
 
-    // Add 3x3 bold block styling
+    // Bold block styles
     if (row % 3 === 0) cell.dataset.block = 'bold-top';
     if (col % 3 === 0) cell.dataset.block = 'bold-left';
     if (col === 8) cell.dataset.block = 'bold-right';
@@ -27,9 +27,20 @@ for (let row = 0; row < 9; row++) {
       cell.textContent = value;
       cell.classList.add('fixed');
     } else {
-      cell.setAttribute('contenteditable', 'true');
+      cell.addEventListener('click', () => {
+        if (selectedCell) selectedCell.classList.remove('selected');
+        selectedCell = cell;
+        selectedCell.classList.add('selected');
+      });
     }
 
     board.appendChild(cell);
   }
 }
+
+// Handle number pad clicks
+numberPad.addEventListener('click', (e) => {
+  if (!e.target.matches('button') || !selectedCell) return;
+  const value = e.target.dataset.value;
+  selectedCell.textContent = value;
+});
