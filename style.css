@@ -80,3 +80,9 @@ body {
     background-color: #cce5ff;
     outline: 2px solid #007bff;
 }
+
+/* Add this new rule to your style.css */
+.cell.invalid {
+    background-color: #ffcccc; /* Light red background */
+    border: 2px solid red;    /* Red border for invalid cells */
+}
