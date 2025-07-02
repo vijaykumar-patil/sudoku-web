@@ -26,13 +26,14 @@ for (let row = 0; row < 9; row++) {
     if (value !== '0') {
       cell.textContent = value;
       cell.classList.add('fixed');
-    } else {
-      cell.addEventListener('click', () => {
-        if (selectedCell) selectedCell.classList.remove('selected');
-        selectedCell = cell;
-        selectedCell.classList.add('selected');
-      });
-    }
+} else {
+  cell.addEventListener('click', () => {
+    if (selectedCell) selectedCell.classList.remove('selected');
+    selectedCell = cell;
+    selectedCell.classList.add('selected');
+  });
+}
+
 
     board.appendChild(cell);
   }
@@ -40,7 +41,13 @@ for (let row = 0; row < 9; row++) {
 
 // Handle number pad clicks
 numberPad.addEventListener('click', (e) => {
-  if (!e.target.matches('button') || !selectedCell) return;
+  if (!e.target.matches('button')) return;
   const value = e.target.dataset.value;
-  selectedCell.textContent = value;
+  if (selectedCell && selectedCell.classList.contains('editable')) {
+    selectedCell.textContent = value;
+  }
 });
+.editable {
+  cursor: pointer;
+}
+
