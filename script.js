@@ -23,7 +23,7 @@ for (let row = 0; row < 9; row++) {
 
         // Apply bold block styles based on position
         if (row % 3 === 0) cell.dataset.blockTop = 'true';
-        if (col % % 3 === 0) cell.dataset.blockLeft = 'true';
+        if (col % 3 === 0) cell.dataset.blockLeft = 'true';
         if (col === 8) cell.dataset.blockRight = 'true';
         if (row === 8) cell.dataset.blockBottom = 'true';
 
